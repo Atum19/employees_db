@@ -1,0 +1,59 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="{{ PORTAL_URL }}{% static 'css/main.css' %}">
+
+  {% block extra_css %}{% endblock extra_css %}
+
+</head>
+<body>
+
+  <!-- Start Container -->
+  <div class="container">
+
+    <!-- Start Header -->
+    <div class="row" id="header"> 
+      <div class="col-xs-8">
+        <h1>Employees Data</h1>
+      </div>
+    </div>
+    <!-- End Header -->
+
+    <!-- Start subheader -->
+    <!--<div class="row" id="sub-header"> -->
+      <!--<div class="col-xs-12">-->
+        <!--<ul class="nav nav-tabs" role="tablist">-->
+          <!--<li role="presentation" class="active"><a href="#">Студенти</a></li>-->
+          <!--<li role="presentation"><a href="#">Відвідування</a></li>-->
+          <!--<li role="presentation"><a href="#">Групи</a></li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!-- End subheader -->
+
+    <!-- Start Content Columns -->
+    <div class="row" id="content-columns">
+      <div class="col-xs-12" id="content-column">
+
+        <h2>{% block title %}{% endblock title %}</h2>
+        {% block content %}{% endblock content %}
+
+      </div>
+    </div>
+    <!-- End Content Columns -->
+
+  </div>
+  <!-- End Container -->
+
+  <!-- Javascripts Inclusion -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  {% block extra_js %}{% endblock extra_js %}
+</body>
+</html>

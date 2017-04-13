@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+
+<a href="{% url 'employees_add' %}" class="btn btn-primary">Add Employee</a>
+
+<nav>
+  <ul class="pagination">
+    <li><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">&raquo;</a></li>
+  </ul>
+</nav>
+
+<!-- Start Students Listing -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>EmpID</a></th>
+      <th>EmpName</a></th>
+      <th>EmpActive</a></th>
+      <th>EmpDepartment</a></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for employee in employees %}
+      <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ employee.emp_name }}</td>
+          <td>{{ employee.emp_active }}</td>
+          <!--<td>{{ student.student_group.title }}</td>-->
+          <td>{{ employee.emp_department }}</td>
+      <td>
+
+      <div class="btn-group btn-group-md">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Дія
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="{% url 'employees_view' employee.id %}">View</a></li>
+          <li><a href="{% url 'employees_edit' employee.id %}">Edit</a></li>
+          <li><a href="{% url 'employees_delete' employee.id %}">Delete</a></li>
+        </ul>
+
+      </div>
+
+      </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<!-- End Students Listing -->
+
+{% if employees.has_other_pages %}
+<nav>
+  <ul class="pagination">
+    <li><a href="{% url 'home' %}?page=1">&laquo;</a></li>
+      {% for p in employees.paginator.page_range %}
+        <li {% if employees.number == p %}class='active'{% endif %}>
+            <a href="{% url 'home' %}?page={{ p }}">{{ p }}</a>
+        </li>
+      {% endfor %}
+    <li>
+    <a href="{% url 'home' %}?page={{ students.paginator.num_pages}}">&raquo;</a>
+    </li>
+  </ul>
+</nav>
+{% endif %}
+
+{% endblock content %}
