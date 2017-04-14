@@ -13,11 +13,11 @@ class Employee(models.Model):
     emp_name = models.CharField(
         max_length=256,
         blank=False,
-        verbose_name=u"Name")
+        verbose_name=u"EmpName")
 
     emp_active = models.BooleanField(
         blank=False,
-        verbose_name=u"IsActive")
+        verbose_name=u"EmpActive")
 
     emp_department = models.ForeignKey("Department",
                                        verbose_name=u"DPName",
@@ -27,4 +27,3 @@ class Employee(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.emp_name
-        # return u"%s %s" % (self.first_name, self.last_name)

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block title %}Employee View{% endblock title %}
+
+{% block content %}
+
+<form action="{% url 'employees_view' object.id %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+    <p><strong>EmpName:</strong> {{ object.emp_name }}</p>
+    {% if object.emp_active == True %}
+        <p><strong>EmpActive:</strong> Yes</p>
+    {% else %}
+        <p><strong>EmpActive:</strong> No</p>
+    {% endif %}
+    <p><strong>EmpDepartment:</strong> {{ object.emp_department }}</p>
+
+    <input type="submit" value="Back" name="back_button" class="btn btn-primary" />
+
+</form>
+
+{% endblock content %}

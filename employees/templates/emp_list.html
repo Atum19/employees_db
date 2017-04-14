@@ -2,23 +2,39 @@
 
 {% load static from staticfiles %}
 
+{% block title %}Employees Database{% endblock title %}
+
 {% block content %}
 
-<a href="{% url 'employees_add' %}" class="btn btn-primary">Add Employee</a>
+<div class='container'>
+  <div class="align-left">
+    <a href="{% url 'employees_add' %}" class="btn btn-primary">Add Employee</a>
+  </div>
+  <div class="align-right">
+    <form action="{% url 'employees_search' %}" method="get" style="margin: 0">
+      <input  id="search_box" type="text" name="search_name" placeholder="Employee Name" >
+      <button id="search_submit" type="submit" class="btn btn-primary" >Search</button>
+    </form>
+  </div>
+</div>
 
+{% if employees.has_other_pages %}
 <nav>
   <ul class="pagination">
-    <li><a href="#">&laquo;</a></li>
-    <li class="active"><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">&raquo;</a></li>
+    <li><a href="{% url 'home' %}?page=1">&laquo;</a></li>
+    {% for p in employees.paginator.page_range %}
+      <li {% if employees.number == p %}class='active'{% endif %}>
+          <a href="{% url 'home' %}?page={{ p }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+    <li>
+      <a href="{% url 'home' %}?page={{ paginator.num_pages }}">&raquo;</a>
+    </li>
   </ul>
 </nav>
+{% endif %}
 
-<!-- Start Students Listing -->
+<!-- Start Employees Listing -->
 <table class="table">
   <thead>
     <tr>
@@ -33,15 +49,18 @@
 
     {% for employee in employees %}
       <tr>
-          <td>{{ forloop.counter }}</td>
+          <td>{{ employee.id }}</td>
           <td>{{ employee.emp_name }}</td>
-          <td>{{ employee.emp_active }}</td>
-          <!--<td>{{ student.student_group.title }}</td>-->
+          {% if employee.emp_active == True %}
+            <td>Yes</td>
+          {% else %}
+            <td>No</td>
+          {% endif %}
           <td>{{ employee.emp_department }}</td>
       <td>
 
       <div class="btn-group btn-group-md">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Дія
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action
           <span class="caret"></span>
         </button>
 
@@ -58,7 +77,7 @@
     {% endfor %}
   </tbody>
 </table>
-<!-- End Students Listing -->
+<!-- End Employees Listing -->
 
 {% if employees.has_other_pages %}
 <nav>
