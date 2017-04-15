@@ -2,11 +2,11 @@
 
 {% load static from staticfiles %}
 
-{% block title %}Employee Add{% endblock title %}
+{% block title %}Department Add{% endblock title %}
 
 {% block content %}
 
-<form action="{% url 'employees_add' %}" method="post" enctype="multipart/form-data">
+<form action="{% url 'departments_add' %}" method="post" enctype="multipart/form-data">
 {% csrf_token %}
 
     {{ form.as_p }}

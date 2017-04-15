@@ -2,7 +2,7 @@ from django.conf.urls import include, url
 
 import debug_toolbar   # for debug mode
 
-from views import employees
+from views import employees, departments
 
 urlpatterns = [
     url(r'^__debug__/', include(debug_toolbar.urls)),
@@ -18,4 +18,6 @@ urlpatterns = [
     url(r'^employees/(?P<pk>\d+)/delete/$', employees.EmployeeDelete.as_view(), name='employees_delete'),
 
     url(r'^employees/search_names/$', employees.EmployeeSearchList.as_view(), name='employees_search'),
+
+    url(r'^departments/add_form/$', departments.DepartmentAdd.as_view(), name='departments_add'),
 ]
