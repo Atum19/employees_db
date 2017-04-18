@@ -67,7 +67,6 @@ class EmployeeUpdate(UpdateView):
     template_name = 'emp_edit.html'
 
     def get_object(self, queryset=None):
-
         return get_object_or_404(self.model, pk=self.kwargs.get('pk'))
 
     def get_success_url(self):
