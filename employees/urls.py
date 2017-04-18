@@ -7,6 +7,7 @@ from views import employees, departments
 urlpatterns = [
     url(r'^__debug__/', include(debug_toolbar.urls)),
 
+    # employees part
     url(r'^$', employees.employees_list, name='home'),
 
     url(r'^employees/add_form/$', employees.EmployeeAdd.as_view(), name='employees_add'),
@@ -19,5 +20,12 @@ urlpatterns = [
 
     url(r'^employees/search_names/$', employees.EmployeeSearchList.as_view(), name='employees_search'),
 
+    # departments part
+    url(r'^departments/$', departments.departments_list, name='departments_list'),
+
     url(r'^departments/add_form/$', departments.DepartmentAdd.as_view(), name='departments_add'),
+
+    url(r'^departments/(?P<pk>\d+)/edit/$', departments.DepartmentUpdate.as_view(), name='departments_edit'),
+
+    url(r'^departments/(?P<pk>\d+)/delete/$', departments.DepartmentDelete.as_view(), name='departments_delete'),
 ]

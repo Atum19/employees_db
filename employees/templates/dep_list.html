@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block title %}Departments List{% endblock title %}
+
+{% block content %}
+
+<div class="align-left">
+  <a href="{% url 'departments_add' %}" class="btn btn-primary">Add Department</a>
+</div>
+
+<!-- Start Employees Listing -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>DepID</a></th>
+      <th>DepName</a></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for department in departments %}
+      <tr>
+          <td>{{ department.id }}</td>
+          <td>{{ department.dp_name }}</td>
+      <td>
+
+      <div class="btn-group btn-group-md">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="{% url 'departments_edit' department.id %}">Edit</a></li>
+          <li><a href="{% url 'departments_delete' department.id %}">Delete</a></li>
+        </ul>
+
+      </div>
+
+      </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<!-- End Employees Listing -->
+
+{% if departments.has_other_pages %}
+<nav>
+  <ul class="pagination">
+    <li><a href="{% url 'departments_list' %}?page=1">&laquo;</a></li>
+    {% for p in departments.paginator.page_range %}
+      <li {% if departments.number == p %}class='active'{% endif %}>
+          <a href="{% url 'departments_list' %}?page={{ p }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+    <li>
+      <a href="{% url 'departments_list' %}?page={{ paginator.num_pages }}">&raquo;</a>
+    </li>
+  </ul>
+</nav>
+{% endif %}
+
+{% endblock content %}

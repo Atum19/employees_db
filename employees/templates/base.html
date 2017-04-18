@@ -24,6 +24,19 @@
     </div>
     <!-- End Header -->
 
+    <!-- Start subheader -->
+    <div class="row" id="sub-header">
+     <div class="col-xs-12">
+       <ul class="nav nav-tabs" role="tablist">
+         <li role="presentation"
+             {% if request.resolver_match.url_name == 'home' %} class="active" {% endif %}><a href="{% url 'home' %}">Employees</a></li>
+         <li role="presentation"
+             {% if request.resolver_match.url_name == 'departments_list' %} class="active" {% endif %}><a href="{% url 'departments_list' %}">Departments</a></li>
+       </ul>
+     </div>
+    </div>
+    <!-- End subheader -->
+
     <!-- Start Content Columns -->
     <div class="row" id="content-columns">
       <div class="col-xs-12" id="content-column">

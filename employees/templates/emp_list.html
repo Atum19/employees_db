@@ -10,11 +10,8 @@
   <div class="align-left">
     <a href="{% url 'employees_add' %}" class="btn btn-primary">Add Employee</a>
   </div>
-  <div class="align-left">
-    <a href="{% url 'departments_add' %}" class="btn btn-primary">Add Department</a>
-  </div>
   <div class="align-right">
-    <form action="{% url 'employees_search' %}" method="get" style="margin: 0">
+    <form action="{% url 'employees_search' %}" method="get">
       <input  id="search_box" type="text" name="search_name" placeholder="Employee Name" >
       <button id="search_submit" type="submit" class="btn btn-primary" >Search</button>
     </form>

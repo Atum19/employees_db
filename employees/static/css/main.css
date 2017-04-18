@@ -10,11 +10,7 @@ h1, h2 {
     float: left;
     width: 50%;
 }
-.align-center{
-    float: center;
-    width: 50%;
-}
 .align-right{
     float: right;
-     width: 50%;
+    width: 50%;
 }
