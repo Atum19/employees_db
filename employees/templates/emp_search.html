@@ -48,7 +48,7 @@
       <ul class="pagination">
         <li><a href="?page=1{% if search_name %}&search_name={{ search_name }}{% endif %}">&laquo;</a></li>
         {% for p in employee_list.paginator.page_range %}
-          <li {% if employees.number == p %}class='active'{% endif %}>
+          <li {% if employee_list.number == p %}class='active'{% endif %}>
               <a href="?page={{ p }}{% if search_name %}&search_name={{ search_name }}{% endif %}">{{ p }}</a>
           </li>
         {% endfor %}
